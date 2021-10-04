@@ -46,3 +46,21 @@ ul{
 
 
 }
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* .addButton{
+    width: 70px;
+    height: 70px;
+    font-size: 20px;
+    border:none;
+    outline: none;
+    background-color: aquamarine;
+    color:white;
+    border-radius: 35px;
+    cursor: pointer;
+} */
