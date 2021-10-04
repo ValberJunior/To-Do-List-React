@@ -22,7 +22,6 @@ ul{
     width: 100%;
     padding: 15px;
     margin-top: 15px;
-    box-shadow: 0 2px 7px 1px #00000033;
 }
 
 .btn{
@@ -30,4 +29,20 @@ ul{
     outline: none;
     background-color: #ffffff00;
     cursor: pointer;
+}
+
+.btn-group{
+    display: flex;
+    align-items: center;
+}
+
+.icon{
+    width: 70px;
+}
+
+.card{
+
+    box-shadow: 0 2px 7px 1px #00000033;
+
+
 }

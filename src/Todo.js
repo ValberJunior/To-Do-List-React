@@ -1,17 +1,35 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Todo.css';
 import List from './components/List.js';
 import TodoForm from './components/TodoForm.js';
 import Item from './components/Item.js';
 
+const SAVED_ITEMS = 'savedItems';
+
 function Todo(){
 
-    // modificar estado
+    //useState
    
     const [items, setItems] = useState([]);
 
+    //useEffect
+
+    //reload page
+    useEffect(()=>{
+        let savedItems = JSON.parse(localStorage.getItem(SAVED_ITEMS));
+        if(savedItems){
+            setItems(savedItems);
+        }
+    },[]);
+
+    //Quando a lista é atualizada
+    useEffect(()=>{
+        localStorage.setItem(SAVED_ITEMS, JSON.stringify(items));
+    },[items]);
+
     function onAddItem(text){
         let it = new Item(text);
+        it.id = items.length + Math.random() * 1000;
         setItems([...items, it]);
     }
   
