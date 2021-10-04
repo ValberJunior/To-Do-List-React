@@ -6,7 +6,7 @@ function DoneImg(props){
     if(props.done){
         return (<img alt='done' src='./assets/done.png'></img>)
     }else{
-        return (<img alt='undone' src='./assets/clock.png'></img>)
+        return (<img alt='undone' src='./assets/undone.png'></img>)
     }
 }
 
