@@ -81,9 +81,10 @@ function Todo(){
     }
 
     return(
-        <div className='Content'>
-             <header className='header'><h1 className='title'>Task List</h1><button className='btn' onClick={()=>{ setShowModal(true)}}><img className='icon' alt='add' src='./assets/add.png'></img></button></header>
-                            
+        <div className='content'>
+            <header className='header'><h1 className='title'>Task List</h1><button className='btn' onClick={()=>{ setShowModal(true)}}><img className='icon' alt='add' src='./assets/add.png'></img></button>
+            </header>
+
                 <div className='container'>
                 
                 <List onDone={onDone} onItemDeleted={onItemDeleted} items={items}></List>
@@ -97,6 +98,13 @@ function Todo(){
 
                 <Modal show={showModal} onHideModal={onHideModal}>  <TodoForm onAddItem={onAddItem}></TodoForm> </Modal>
                 </div>
+        
+        <footer className="footer">
+
+            <a href="https://github.com/ValberJunior"><img className='icon' alt='github' src='./assets/github.png'/></a>
+            <a href="https://www.linkedin.com/in/valber-junior-238217b4/"><img className='icon' alt='linkedin' src='./assets/linkedin.png'/></a>
+
+        </footer>
         </div>
     );
 
