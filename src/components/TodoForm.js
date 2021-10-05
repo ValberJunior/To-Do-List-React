@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 
 function TodoForm(props){
 
-    // modificar estado
+    // state
     const [text, setText] = useState('');
 
-    function handleChange(event){   //Para conseguir receber um item de um componente filho para o componente pai, precisei usar esse callback
+    function handleChange(event){   //To be able to receive an item from a child component to the parent component, I needed to use this callback
 
         let textInput = event.target.value;
         setText(textInput);
@@ -16,14 +16,14 @@ function TodoForm(props){
 
       function addItem(event){
 
-            event.preventDefault(); //Evitar o comportamento default do button dentro do formulário
+            event.preventDefault(); //Avoid the button's default behavior within the form
             
-            //Condicional para add items
+            //Conditional for add items
             if(!text){
                 alert('Insira uma tarefa');
             } else{
 
-            //Inserir a lista
+            //Insert the list
             props.onAddItem(text);
             setText("");
 
