@@ -3,6 +3,7 @@ import './Todo.css';
 import List from './components/List.js';
 import TodoForm from './components/TodoForm.js';
 import Item from './components/Item.js';
+import Modal from './components/Modal';
 
 const SAVED_ITEMS = 'savedItems';
 
@@ -11,6 +12,8 @@ function Todo(){
     //useState
    
     const [items, setItems] = useState([]);
+
+    const [showModal, setShowModal] = useState(false);
 
     //useEffect
 
@@ -31,6 +34,7 @@ function Todo(){
         let it = new Item(text);
         it.id = items.length + Math.random() * 1000;
         setItems([...items, it]);
+        setShowModal(false);
     }
   
     function onItemDeleted(item){
@@ -51,15 +55,24 @@ function Todo(){
         setItems(updatedItems);
     }
 
+    function onHideModal(event){
+
+        let target = event.target;
+
+        if(target.id === 'modal'){
+            setShowModal(false);
+        }
+        console.log(target);
+
+    }
+
     return(
         <div className='container'>
-        <header className='header'><h1>Todo</h1><button className='btn'><img className='icon' alt='add' src='./assets/add.png'></img></button></header>
-        
-        {/* <TodoForm onAddItem={onAddItem}></TodoForm> */}
-
+        <header className='header'><h1>Todo</h1><button className='btn' onClick={()=>{ setShowModal(true)}}><img className='icon' alt='add' src='./assets/add.png'></img></button></header>
+           
         <List onDone={onDone} onItemDeleted={onItemDeleted} items={items}></List>
 
-
+        <Modal show={showModal} onHideModal={onHideModal}>  <TodoForm onAddItem={onAddItem}></TodoForm> </Modal>
         </div>
     );
 

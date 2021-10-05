@@ -53,14 +53,23 @@ ul{
     align-items: center;
 }
 
-/* .addButton{
-    width: 70px;
-    height: 70px;
-    font-size: 20px;
-    border:none;
-    outline: none;
-    background-color: aquamarine;
-    color:white;
-    border-radius: 35px;
-    cursor: pointer;
-} */
+.modal{
+    width: 100vw;
+    height: 100vh;
+    background-color: #00000069;
+    position:fixed;
+    top:0;
+    left:0;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hideModal{
+    display: none;
+}
+
+.card-modal{
+    padding: 20px;
+    background-color: white;
+}
