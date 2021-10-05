@@ -33,9 +33,9 @@ function TodoForm(props){
 
 
     return(
-        <form>
-            <input onChange={handleChange} type='text' value={text}></input>
-            <button onClick={addItem}>Add</button>
+        <form className='form'>
+            <input className='inputTask' onChange={handleChange} type='text' value={text} placeholder={"Add Your Task"}></input>
+            <button className='btn' onClick={addItem}><img className='icon' alt='add' src='./assets/add.png'></img></button>
         </form>
     );
 

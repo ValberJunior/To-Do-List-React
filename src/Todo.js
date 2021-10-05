@@ -4,6 +4,8 @@ import List from './components/List.js';
 import TodoForm from './components/TodoForm.js';
 import Item from './components/Item.js';
 import Modal from './components/Modal';
+import Lottie from 'react-lottie';
+import animationData from './components/animation/73296-time-management.json'
 
 const SAVED_ITEMS = 'savedItems';
 
@@ -14,6 +16,8 @@ function Todo(){
     const [items, setItems] = useState([]);
 
     const [showModal, setShowModal] = useState(false);
+
+    const [animationState, setAnimationState] = useState({isStopped: false, isPaused: false});
 
     //useEffect
 
@@ -29,6 +33,16 @@ function Todo(){
     useEffect(()=>{
         localStorage.setItem(SAVED_ITEMS, JSON.stringify(items));
     },[items]);
+
+    //animation
+    const defaultOptions = {
+        loop: true,
+        autoplay: true, 
+        animationData: animationData,
+        rendererSettings: {
+          preserveAspectRatio: 'xMidYMid slice'
+        }
+      };
 
     function onAddItem(text){
         let it = new Item(text);
@@ -67,12 +81,22 @@ function Todo(){
     }
 
     return(
-        <div className='container'>
-        <header className='header'><h1>Todo</h1><button className='btn' onClick={()=>{ setShowModal(true)}}><img className='icon' alt='add' src='./assets/add.png'></img></button></header>
-           
-        <List onDone={onDone} onItemDeleted={onItemDeleted} items={items}></List>
+        <div className='Content'>
+             <header className='header'><h1 className='title'>Task List</h1><button className='btn' onClick={()=>{ setShowModal(true)}}><img className='icon' alt='add' src='./assets/add.png'></img></button></header>
+                            
+                <div className='container'>
+                
+                <List onDone={onDone} onItemDeleted={onItemDeleted} items={items}></List>
 
-        <Modal show={showModal} onHideModal={onHideModal}>  <TodoForm onAddItem={onAddItem}></TodoForm> </Modal>
+                <Lottie options={defaultOptions}
+                height={700}
+                width={600}
+                isStopped={animationState.isStopped}
+                isPaused={animationState.isPaused}/>
+                
+
+                <Modal show={showModal} onHideModal={onHideModal}>  <TodoForm onAddItem={onAddItem}></TodoForm> </Modal>
+                </div>
         </div>
     );
 
