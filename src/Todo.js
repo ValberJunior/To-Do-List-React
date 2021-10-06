@@ -29,7 +29,7 @@ function Todo(){
         }
     },[]);
 
-    //Quando a lista é atualizada
+    //When the list is updated
     useEffect(()=>{
         localStorage.setItem(SAVED_ITEMS, JSON.stringify(items));
     },[items]);
