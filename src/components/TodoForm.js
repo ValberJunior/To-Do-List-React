@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../actions/listAction'
 
 
 
@@ -7,6 +9,8 @@ function TodoForm(props){
     // state
     const [text, setText] = useState('');
 
+    const dispatch = useDispatch();
+
     function handleChange(event){   //To be able to receive an item from a child component to the parent component, I needed to use this callback
 
         let textInput = event.target.value;
@@ -14,7 +18,7 @@ function TodoForm(props){
 
     };
 
-      function addItem(event){
+      function addItemEvent(event){
 
             event.preventDefault(); //Avoid the button's default behavior within the form
             
@@ -24,7 +28,7 @@ function TodoForm(props){
             } else{
 
             //Insert the list
-            props.onAddItem(text);
+            dispatch(addItem(text))
             setText("");
 
             }
@@ -35,7 +39,7 @@ function TodoForm(props){
     return(
         <form className='form'>
             <input className='inputTask' onChange={handleChange} type='text' value={text} placeholder={"Add Your Task"}></input>
-            <button className='btn' onClick={addItem}><img className='icon' alt='add' src='./assets/add.png'></img></button>
+            <button className='btn' onClick={addItemEvent}><img className='icon' alt='add' src='./assets/add.png'></img></button>
         </form>
     );
 
