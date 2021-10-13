@@ -30,6 +30,7 @@ function TodoForm(props){
             //Insert the list
             dispatch(addItem(text))
             setText("");
+            props.onHideModal()
 
             }
         }

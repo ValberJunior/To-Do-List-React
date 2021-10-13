@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Todo.css';
 import List from './components/List.js';
 import TodoForm from './components/TodoForm.js';
-import Item from './components/Item.js';
+// import Item from './components/Item.js';
 import Modal from './components/Modal';
 import Lottie from 'react-lottie';
 import animationData from './components/animation/73296-time-management.json'
@@ -10,7 +10,9 @@ import animationData from './components/animation/73296-time-management.json'
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
+
 import listReducer from './reducers/listReducer';
+
 
 const store = createStore(listReducer);
 
@@ -65,8 +67,8 @@ function App(){
         <div className='content'>
 
             <Provider store={store}>
-                <header className='header'><h1 className='title'>Task List</h1><button className='btn' onClick={()=>{ setShowModal(true)}}><img className='icon' alt='add' src='./assets/add.png'></img></button>
-                </header>
+                <header className='header'><h1 className='title'>Task List</h1><button className='btn' onClick={()=>{ setShowModal(true)}}><img className='icon' alt='add' src='./assets/add.png'></img></button></header>
+                
 
                     <div className='container'>
                     
@@ -79,16 +81,18 @@ function App(){
                     isPaused={animationState.isPaused}/>
                     
 
-                    <Modal show={showModal} onHideModal={onHideModal}>  <TodoForm onHideModal={onHideModal}/> </Modal>
+                    <Modal show={showModal} onHideModal={onHideModal}>  <TodoForm onHideModal={onHideModal}> </TodoForm> </Modal>
                     </div>
+           
+
+                    <footer className="footer">
+
+                        <a href="https://github.com/ValberJunior"><img className='icon' alt='github' src='./assets/github.png'/></a>
+                        <a href="https://www.linkedin.com/in/valber-junior-238217b4/"><img className='icon' alt='linkedin' src='./assets/linkedin.png'/></a>
+
+                    </footer>
             </Provider>
 
-        <footer className="footer">
-
-            <a href="https://github.com/ValberJunior"><img className='icon' alt='github' src='./assets/github.png'/></a>
-            <a href="https://www.linkedin.com/in/valber-junior-238217b4/"><img className='icon' alt='linkedin' src='./assets/linkedin.png'/></a>
-
-        </footer>
         </div>
     );
 
