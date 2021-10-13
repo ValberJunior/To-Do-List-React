@@ -81,7 +81,7 @@ function App(){
                     isPaused={animationState.isPaused}/>
                     
 
-                    <Modal show={showModal} onHideModal={onHideModal}>  <TodoForm onHideModal={onHideModal}> </TodoForm> </Modal>
+                    <Modal show={showModal} onHideModal={onHideModal}>  <TodoForm onHideModal={onHideModal}/> </Modal>
                     </div>
            
 
