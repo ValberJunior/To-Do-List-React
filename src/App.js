@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Todo.css';
 import List from './components/List.js';
 import TodoForm from './components/TodoForm.js';
-// import Item from './components/Item.js';
+import Item from './components/Item.js';
 import Modal from './components/Modal';
 import Lottie from 'react-lottie';
 import animationData from './components/animation/73296-time-management.json'
@@ -81,7 +81,7 @@ function App(){
                     isPaused={animationState.isPaused}/>
                     
 
-                    <Modal show={showModal} onHideModal={onHideModal}>  <TodoForm onHideModal={onHideModal}/> </Modal>
+                    <Modal show={showModal} onHideModal={onHideModal}>  <TodoForm onHideModal={onHideModal} /> </Modal>
                     </div>
            
 
