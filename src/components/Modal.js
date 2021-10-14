@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-// import Card from './Card';
 import Lottie from 'react-lottie';
 import animationData from './animation/25548-girl-on-the-tablet.json';
 
 
 function Modal(props){
 
-    const [show, setShow] = useState(true);
-    const [animationState, setAnimationState] = useState({isStopped: false, isPaused: false});
+    const [animationState] = useState({isStopped: false, isPaused: false});
 
     const defaultOptions = {
         loop: true,
@@ -18,11 +16,21 @@ function Modal(props){
         }
       };
 
+      
+      function hideModal(event){
 
+        let target = event.target;
+
+        if(target.id === 'modal'){
+           props.onHideModal();
+        }
+        console.log(target);
+
+    }
 
     return(
-        <div id='modal' onClick={props.onHideModal} className={props.show ? "modal" : "modal hideModal"}>
-            {/* <Card className='card-modal'> */}
+        <div id='modal' onClick={hideModal} className={props.show ? "modal" : "modal hideModal"}>
+           
             <div>
                 <Lottie options={defaultOptions}
                 height={700}
@@ -34,8 +42,7 @@ function Modal(props){
             <h2 className='title'>Add a task <br/>to your list</h2>
             {props.children}
             </div>
-             
-            {/* </Card> */}
+    
 
         </div>
     );

@@ -7,7 +7,7 @@ export default function listReducer (state = [], action){
          return [...state, action.payload];
 
         case "DELETE_ITEM":
-         return state.filter(item=>item.id != action.payload);
+         return state.filter(item=>item.id !== action.payload);
 
         case "CHANGE_DONE":
          return state.map(item=> {

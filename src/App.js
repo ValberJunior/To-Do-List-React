@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './Todo.css';
 import List from './components/List.js';
 import TodoForm from './components/TodoForm.js';
-import Item from './components/Item.js';
 import Modal from './components/Modal';
 import Lottie from 'react-lottie';
 import animationData from './components/animation/73296-time-management.json'
@@ -14,9 +13,29 @@ import { Provider } from 'react-redux';
 import listReducer from './reducers/listReducer';
 
 
-const store = createStore(listReducer);
-
 const SAVED_ITEMS = 'savedItems';
+
+//PersistState
+function persistState(state){
+    localStorage.setItem(SAVED_ITEMS, JSON.stringify(state))
+}
+
+function loadState(){
+    const actualState = localStorage.getItem(SAVED_ITEMS);
+
+    if (actualState){
+        return JSON.parse(actualState)
+    }else{
+        return [];
+    }
+}
+
+//store
+const store = createStore(listReducer, loadState());
+
+store.subscribe(()=>{
+    persistState(store.getState())
+})
 
 function App(){
 
@@ -24,22 +43,9 @@ function App(){
 
     const [showModal, setShowModal] = useState(false);
 
-    const [animationState, setAnimationState] = useState({isStopped: false, isPaused: false});
+    const [animationState] = useState({isStopped: false, isPaused: false});
 
-    //useEffect
 
-    // //reload page
-    // useEffect(()=>{
-    //     let savedItems = JSON.parse(localStorage.getItem(SAVED_ITEMS));
-    //     if(savedItems){
-    //         setItems(savedItems);
-    //     }
-    // },[]);
-
-    // //When the list is updated
-    // useEffect(()=>{
-    //     localStorage.setItem(SAVED_ITEMS, JSON.stringify(items));
-    // },[items]);
 
     //animation
     const defaultOptions = {
@@ -52,16 +58,9 @@ function App(){
       };
 
     
-    function onHideModal(event){
-
-        let target = event.target;
-
-        if(target.id === 'modal'){
-            setShowModal(false);
-        }
-        console.log(target);
-
-    }
+      function onHideModal(){
+          setShowModal(false);
+      }
 
     return(
         <div className='content'>
